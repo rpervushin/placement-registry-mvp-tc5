@@ -1,0 +1,209 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="c2-placement-registry" name="C2 - Placement Registry">
+    <mxGraphModel dx="1400" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ================= ПОЛЬЗОВАТЕЛИ ================= -->
+        <mxCell id="admin" value="&lt;b&gt;Администратор реестра&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;Команда Каталог. Просматривает и&lt;br&gt;правит конфигурацию плейсментов" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#2E75B6;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="220" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="owner" value="&lt;b&gt;Владелец полки&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;X5 Media / Trade-Promo / Лояльность.&lt;br&gt;Этап 2 — доступ к своим плейсментам" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#2E75B6;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="220" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- ================= ГРАНИЦА РЕШЕНИЯ ================= -->
+        <mxCell id="boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;strokeColor=#70AD47;fillColor=none;verticalAlign=bottom;align=left;spacingLeft=14;spacingBottom=10;fontStyle=1;fontSize=12;fontColor=#375623;" vertex="1" parent="1">
+          <mxGeometry x="340" y="40" width="560" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="boundary-label" value="&lt;b&gt;Placement Registry&lt;/b&gt;&lt;br&gt;[Service]" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#375623;" vertex="1" parent="1">
+          <mxGeometry x="350" y="710" width="220" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ================= КОНТЕЙНЕРЫ РЕЕСТРА (НОВЫЕ) ================= -->
+        <mxCell id="adminui" value="&lt;b&gt;Admin UI&lt;/b&gt;&lt;br&gt;[Компонент: React]&lt;br&gt;&lt;br&gt;Просмотр/правка конфигурации,&lt;br&gt;карта плейсментов, метрики из Grafana" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#29ABE2;strokeColor=#70AD47;strokeWidth=2;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="380" y="90" width="240" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="api" value="&lt;b&gt;Registry API&lt;/b&gt;&lt;br&gt;[Система: Python 3.11 / FastAPI]&lt;br&gt;&lt;br&gt;admin-роутер (Read+Update) +&lt;br&gt;internal-роутер приёма push от RecSys/Catalog" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2E75B6;strokeColor=#70AD47;strokeWidth=2;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="380" y="250" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="worker" value="&lt;b&gt;Sync worker&lt;/b&gt;&lt;br&gt;[Система: Python / arq]&lt;br&gt;&lt;br&gt;Этап 2: опрос AB-платформы&lt;br&gt;(на MVP не разворачивается)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2E75B6;strokeColor=#70AD47;strokeWidth=2;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="420" width="240" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pg" value="&lt;b&gt;PostgreSQL&lt;/b&gt;&lt;br&gt;[Модуль/данные: RDBMS]&lt;br&gt;&lt;br&gt;Конфигурация плейсментов,&lt;br&gt;audit log" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#9DC3E6;strokeColor=#70AD47;strokeWidth=2;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="680" y="250" width="180" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="redis" value="&lt;b&gt;Redis&lt;/b&gt;&lt;br&gt;[Модуль/данные: KVDB, cashews]&lt;br&gt;&lt;br&gt;Кэш для Admin UI (опц.)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#9DC3E6;strokeColor=#70AD47;strokeWidth=2;fontSize=11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="680" y="90" width="180" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ================= ВНЕШНИЕ СИСТЕМЫ (СУЩЕСТВУЮЩИЕ) ================= -->
+        <mxCell id="recsys" value="&lt;b&gt;RecSys (PA Api)&lt;/b&gt;&lt;br&gt;[Внешняя система: MS, Go]&lt;br&gt;&lt;br&gt;Персонализированные рекомендации&lt;br&gt;и ранжирование плейсментов" style="rounded=0;dashed=1;whiteSpace=wrap;html=1;fillColor=#808080;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="40" width="240" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="catalog" value="&lt;b&gt;MS Catalog&lt;/b&gt;&lt;br&gt;[Внешняя система: MS, Python]&lt;br&gt;&lt;br&gt;Каталог товаров; на MVP — опц.&lt;br&gt;мониторинг, Этап 2 — push плейсментов" style="rounded=0;dashed=1;whiteSpace=wrap;html=1;fillColor=#808080;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="170" width="240" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="grafana" value="&lt;b&gt;Grafana / Prometheus&lt;/b&gt;&lt;br&gt;[Внешняя система: Monitoring]&lt;br&gt;&lt;br&gt;Метрики ручки /context Каталога&lt;br&gt;по label placement_id" style="rounded=0;dashed=1;whiteSpace=wrap;html=1;fillColor=#808080;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="310" width="240" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ab" value="&lt;b&gt;AB-платформа&lt;/b&gt;&lt;br&gt;[Внешняя система: MS]&lt;br&gt;&lt;br&gt;Результаты A/B-тестов по&lt;br&gt;плейсментам — Этап 2" style="rounded=0;dashed=1;whiteSpace=wrap;html=1;fillColor=#808080;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="440" width="240" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="x5id" value="&lt;b&gt;X5ID&lt;/b&gt;&lt;br&gt;[Внешняя система: Auth]&lt;br&gt;&lt;br&gt;Корпоративная аутентификация" style="rounded=0;dashed=1;whiteSpace=wrap;html=1;fillColor=#808080;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="560" width="240" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- ================= СВЯЗИ ================= -->
+        <mxCell id="e1" value="Использует&lt;br&gt;[HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#70AD47;fontColor=#375623;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="admin" target="adminui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e2" value="Использует (Этап 2)&lt;br&gt;[HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#70AD47;fontColor=#375623;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="owner" target="adminui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e3" value="Просмотр/правка конфигурации&lt;br&gt;[HTTPS:JSON]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#70AD47;fontColor=#375623;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="adminui" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e4" value="Чтение/запись конфигурации&lt;br&gt;[TCP:5432:SQL]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#70AD47;fontColor=#375623;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="api" target="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e5" value="Кэш для Admin UI&lt;br&gt;[TCP:6379:Redis]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#70AD47;fontColor=#375623;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="api" target="redis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e6" value="Обновление AB-статусов&lt;br&gt;[TCP:5432:SQL]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#70AD47;fontColor=#375623;dashed=1;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.85;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="worker" target="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e7" value="Опрос статусов A/B (Этап 2)&lt;br&gt;[HTTPS:JSON]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#70AD47;fontColor=#375623;dashed=1;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="worker" target="ab">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e8" value="Push: новые/изменённые плейсменты&lt;br&gt;[HTTPS:JSON]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#70AD47;fontColor=#375623;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="recsys" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e9" value="Push: плейсменты (Этап 2)&lt;br&gt;[HTTPS:JSON]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#70AD47;fontColor=#375623;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.6;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="catalog" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e10" value="Чтение метрик по placement_id&lt;br&gt;(read-only) [HTTPS:PromQL]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#70AD47;fontColor=#375623;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="api" target="grafana">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e11" value="Проверка токена администратора&lt;br&gt;[HTTPS:JSON]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#1F4E79;fontColor=#1F4E79;exitX=1;exitY=0.9;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;" edge="1" parent="1" source="api" target="x5id">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ================= ЛЕГЕНДА ================= -->
+        <mxCell id="legend" value="Легенда" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;verticalAlign=top;fontStyle=1;fontSize=13;align=center;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="260" height="430" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-h1" value="Цвета линий" style="text;html=1;fontStyle=1;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="430" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#1F4E79;" vertex="1" parent="1">
+          <mxGeometry x="50" y="452" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t1" value="Существующий" style="text;html=1;fontColor=#FFFFFF;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="452" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70AD47;strokeColor=#70AD47;" vertex="1" parent="1">
+          <mxGeometry x="50" y="472" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t2" value="Новый" style="text;html=1;fontColor=#FFFFFF;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="472" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c3" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ED7D31;strokeColor=#ED7D31;" vertex="1" parent="1">
+          <mxGeometry x="50" y="492" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t3" value="Изменяемый" style="text;html=1;fontColor=#FFFFFF;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="492" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E15241;strokeColor=#E15241;" vertex="1" parent="1">
+          <mxGeometry x="50" y="512" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t4" value="Удаляемый" style="text;html=1;fontColor=#FFFFFF;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="512" width="200" height="18" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-h2" value="Цвета заливок" style="text;html=1;fontStyle=1;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="538" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c5" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#1F4E79;" vertex="1" parent="1">
+          <mxGeometry x="50" y="560" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t5" value="Пользователь" style="text;html=1;fontColor=#FFFFFF;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="560" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c6" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2E75B6;strokeColor=#2E75B6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="578" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t6" value="Система" style="text;html=1;fontColor=#FFFFFF;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="578" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c7" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#29ABE2;strokeColor=#29ABE2;" vertex="1" parent="1">
+          <mxGeometry x="50" y="596" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t7" value="Компонент" style="text;html=1;fontColor=#FFFFFF;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="596" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c8" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#9DC3E6;strokeColor=#9DC3E6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="614" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t8" value="Модуль/функция/данные" style="text;html=1;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="614" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c9" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#595959;strokeColor=#595959;" vertex="1" parent="1">
+          <mxGeometry x="50" y="632" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t9" value="Внешний пользователь" style="text;html=1;fontColor=#FFFFFF;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="632" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c10" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#808080;strokeColor=#808080;" vertex="1" parent="1">
+          <mxGeometry x="50" y="650" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t10" value="Внешняя система" style="text;html=1;fontColor=#FFFFFF;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="650" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c11" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A6A6A6;strokeColor=#A6A6A6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="668" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t11" value="Внешний компонент" style="text;html=1;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="668" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c12" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D9D9D9;strokeColor=#D9D9D9;" vertex="1" parent="1">
+          <mxGeometry x="50" y="686" width="200" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t12" value="Внешний модуль/данные" style="text;html=1;fontSize=10;align=left;spacingLeft=6;" vertex="1" parent="1">
+          <mxGeometry x="50" y="686" width="200" height="16" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-h3" value="Типы линий" style="text;html=1;fontStyle=1;fontSize=11;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="710" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t13" value="В рамках решения: линии сплошные,&#10;рамки — крупный пунктир" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="730" width="220" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-t14" value="За рамками решения: линии и рамки —&#10;мелкий пунктир" style="text;html=1;fontSize=10;align=left;" vertex="1" parent="1">
+          <mxGeometry x="50" y="764" width="220" height="34" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
